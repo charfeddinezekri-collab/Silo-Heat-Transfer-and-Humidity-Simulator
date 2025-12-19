@@ -29,7 +29,7 @@ The system consists of two main components:
 
 ```bash
 cd ventilation_system
-streamlit run part_a.py
+streamlit Silo Heat Transfer and Humidity Simulator.py.py
 ```
 
 The application will open in your web browser at `http://localhost:8501`
