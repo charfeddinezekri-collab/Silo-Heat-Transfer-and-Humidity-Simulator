@@ -21,14 +21,14 @@ The system consists of two main components:
 1. **Clone or download the project files**
 2. **Install dependencies:**
    ```bash
-   cd ventilation_system
+
    pip install -r requirements.txt
    ```
 
 ## Running the Application
 
 ```bash
-cd ventilation_system
+
 streamlit Silo Heat Transfer and Humidity Simulator.py.py
 ```
 
