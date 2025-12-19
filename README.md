@@ -95,7 +95,7 @@ Else if ventilation_mode in ["regular", "automated"]:
 
 ### Silo Selection
 - **Silo One**: No insulation
-- **Silo Two**: 4cm foam insulation (temperature factor: 0.8)
+- **Silo Two**: 3cm foam insulation (temperature factor: 0.8)
 
 ### Ventilation Modes
 - **Unventilated**: Fan always OFF
@@ -114,23 +114,6 @@ Three sample Excel files are provided:
 2. **`sample_data_unsafe.xlsx`**: Warm, humid conditions → Fan OFF  
 3. **`sample_data_mixed.xlsx`**: Varying conditions → Depends on hour
 
-## Testing
-
-### Unit Tests
-```bash
-# Test Part B logic engine
-python -m unittest test_part_b.py -v
-```
-
-### Integration Tests
-```bash
-# Run comprehensive tests
-python -c "
-from part_b import VentilationController
-controller = VentilationController()
-# ... test scenarios
-"
-```
 
 ## System Architecture
 
@@ -152,15 +135,7 @@ controller = VentilationController()
 └─────────────────────────────────────────┘
 ```
 
-## Technical Implementation
 
-### Part B Constants
-```python
-INTERGRANULAR_RH_THRESHOLD = 75.0  # percent
-TEMP_DIFF_C3_THRESHOLD = 3.0       # °C
-TEMP_DIFF_C4_THRESHOLD = 5.0       # °C
-INSULATION_FACTOR = 0.8            # for silo two
-```
 
 ### Dew Point Calculation
 Uses Magnus-Tetens approximation (Alduchov & Eskridge, 1996):
@@ -197,20 +172,6 @@ Uses Magnus-Tetens approximation (Alduchov & Eskridge, 1996):
 - **Invalid data**: Specifies validation requirements
 - **System errors**: Graceful degradation with user feedback
 
-## Limitations
-
-1. **Simplified Models**: Uses simplified psychrometric relationships
-2. **Layer Temperature**: C4 uses estimation based on daily range
-3. **Environmental Factors**: Doesn't account for wind, solar radiation, etc.
-4. **Assumptions**: assumes uniform grain properties
-
-## Future Enhancements
-
-1. **Real sensor integration**: Connect to actual silo monitoring systems
-2. **Advanced models**: More complex moisture transfer calculations
-3. **Historical data**: Store and analyze ventilation decisions over time
-4. **Multi-silo management**: Handle multiple silos simultaneously
-5. **Alerts**: Notification system for critical conditions
 
 ## Support
 
