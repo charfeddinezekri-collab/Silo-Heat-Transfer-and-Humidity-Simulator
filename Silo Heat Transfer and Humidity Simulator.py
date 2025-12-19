@@ -13,7 +13,6 @@ import xlsxwriter
 # --- 0. CORE PHYSICS CONSTANTS AND ADAPTIVE LOGIC ---
 # ==============================================================================
 
-# Silo Dimensions (from your original code, converted to meters)
 SILO_R = 0.75  # 75 cm
 SILO_H = 1.70  # 170 cm
 SILO_VOLUME = math.pi * SILO_R**2 * SILO_H  # Volume of the grain mass (~3.00 m^3)
@@ -35,7 +34,6 @@ INSULATION_RATIO = 7.5 # (Insulation Performance Ratio)
 A_CONSTANT = 17.27
 B_CONSTANT = 237.0
 
-# --- HUMIDITY CONSTANTS (MODIFIED: DAMPING INCREASED 2.5X) ---
 # Defines how quickly the silo internal RH responds to ambient RH (applied to Dew Point). 
 RH_DAMPING_FACTOR = 0.1 
 
@@ -110,7 +108,6 @@ def calculate_automated_status(current_T_ambient, current_RH_ambient, avg_T_grai
     
     return False 
 
-# --- ADAPTIVE HEURISTIC MODEL ---
 
 def calculate_point_temperature_adaptive(normalized_radius, normalized_height, current_time_index, history_df, insulation_factor, delta_T_vent):
     """
@@ -126,8 +123,6 @@ def calculate_point_temperature_adaptive(normalized_radius, normalized_height, c
     
     # 1. Thermal Depth and Lag (Modified by Insulation)
     thermal_depth = min(
-        # Modification from previous step: Halving the effective insulation factor 
-        # to reduce thermal lag by half in the insulated scenario.
         dist_to_wall * 1.0 * (insulation_factor / 2.0),
         dist_to_roof * 0.8,
         (dist_to_floor + 0.5) * 2.0
@@ -173,7 +168,7 @@ def select_scenario_key(is_insulated, ventilation_type):
     raise ValueError("Invalid Silo Configuration provided.")
 
 # ==============================================================================
-# --- 1. SIMULATION ENGINE (ADAPTED) ---
+# --- 1. SIMULATION ENGINE ---
 # ==============================================================================
 
 @st.cache_data
@@ -635,7 +630,7 @@ The combined evolution plots provide an overview of the thermal behavior.
 # --- MAIN APP LOGIC (ADAPTED) ---
 
 def main():
-    st.title("Grain Silo Thermal Simulation and Analysis")
+    st.title("Grain Silo Thermal Simulation and Analysis Engineered by Zekri Charef Eddine")
     st.sidebar.title("🎛️ Controls")
     
     # 1. Data Source
